@@ -12,18 +12,13 @@ RUN apt-get -y install sudo curl locales vim
 # fix bitbake error "Your system needs to support the en_US.UTF-8 locale."
 RUN locale-gen en_US.UTF-8
 
-# add repo tool (precisa pro layer da toradex)
-RUN curl http://storage.googleapis.com/git-repo-downloads/repo > /usr/local/bin/repo
-RUN chmod a+x /usr/local/bin/repo
-# fix repo nao encontrando python
-RUN ln -s /usr/bin/python3 /usr/bin/python
-
 # non-root user pra fazer a build
 RUN id build 2>/dev/null || useradd --uid 30000 --create-home build
 RUN echo "build ALL=(ALL) NOPASSWD: ALL" | tee -a /etc/sudoers
 USER build
 WORKDIR /home/build
 
+##### pro yocto/zenith-os na colibri #####
 # poky
 RUN git clone -b dunfell git://git.yoctoproject.org/poky 
 WORKDIR /home/build/poky
@@ -48,7 +43,13 @@ RUN ../bitbake/bin/bitbake-layers add-layer ../meta-toradex-nxp
 
 RUN ../bitbake/bin/bitbake-layers add-layer ../meta-zenith-os
 
-# toradex reference image
+##### pra toradex reference image #####
+# add repo tool
+#RUN curl http://storage.googleapis.com/git-repo-downloads/repo > /usr/local/bin/repo
+#RUN chmod a+x /usr/local/bin/repo
+# fix repo nao encontrando python
+#RUN ln -s /usr/bin/python3 /usr/bin/python
+
 #RUN mkdir /home/build/oe-core
 #WORKDIR /home/build/oe-core
 # configurar git
