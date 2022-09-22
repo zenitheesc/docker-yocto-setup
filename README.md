@@ -75,6 +75,7 @@ parei de fazer quando vi que era diferente do jeito do yocto
 só tirar o que é do zenith no docker e seguir o tutorial de baixo (não mudando a distro na local.conf)
 
 # build zenith-os pra colibri, do jeito do yocto (nao precisa mudar o docker)(ainda nao sei se ta funcionando)
+status: nao funfou, se pah faltou overlay necessario pro kernel
 ```
 source oe-init-build-env
 
