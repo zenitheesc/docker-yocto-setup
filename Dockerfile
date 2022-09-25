@@ -18,7 +18,6 @@ RUN echo "build ALL=(ALL) NOPASSWD: ALL" | tee -a /etc/sudoers
 USER build
 WORKDIR /home/build
 
-##### pro yocto/zenith-os na colibri #####
 # poky
 RUN git clone -b dunfell git://git.yoctoproject.org/poky 
 WORKDIR /home/build/poky
@@ -42,19 +41,3 @@ RUN ../bitbake/bin/bitbake-layers add-layer ../meta-freescale-3rdparty/
 RUN ../bitbake/bin/bitbake-layers add-layer ../meta-toradex-nxp
 
 RUN ../bitbake/bin/bitbake-layers add-layer ../meta-zenith-os
-
-##### pra toradex reference image #####
-# add repo tool
-#RUN curl http://storage.googleapis.com/git-repo-downloads/repo > /usr/local/bin/repo
-#RUN chmod a+x /usr/local/bin/repo
-# fix repo nao encontrando python
-#RUN ln -s /usr/bin/python3 /usr/bin/python
-
-#RUN mkdir /home/build/oe-core
-#WORKDIR /home/build/oe-core
-# configurar git
-#RUN git config --global user.email "seu email" && git config --global user.name "nome"
-#RUN repo init -u https://git.toradex.com/toradex-manifest.git -b dunfell-5.x.y -m tdxref/default.xml
-#RUN repo sync
-#RUN . /home/build/oe-core/export
-#WORKDIR /home/build
