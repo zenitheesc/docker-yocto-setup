@@ -44,7 +44,7 @@ pra descobrir esse tamanho eu uso:
 depois dessa gambiarra, coloca no sdcard e instala via toradex easy installer
 
 ## instalar na toradex
-extrai *Image-Tezi*.tar pro sdcard
+copia a pasta pro sdcard
 
 boota a toradex e instala pelo easy intaler
 
